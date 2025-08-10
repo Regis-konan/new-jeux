@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pierre-Feuille-Ciseaux</title>
+  <link rel="stylesheet" href="css/chifoumi.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>✊✋✌ Pierre - Feuille - Ciseaux</h1>
+
+    <!-- Zone score -->
+    <div class="scoreboard">
+      <div>👤 Joueur : <span id="score-player">0</span></div>
+      <div>💻 Ordi : <span id="score-computer">0</span></div>
+    </div>
+
+    <!-- Choix -->
+    <div class="choices">
+      <button data-choice="pierre" class="choice-btn">✊</button>
+      <button data-choice="feuille" class="choice-btn">✋</button>
+      <button data-choice="ciseaux" class="choice-btn">✌</button>
+    </div>
+
+    <!-- Résultat de la manche -->
+    <div class="round-result" id="round-result">Fais ton choix...</div>
+
+    <!-- Affichage des choix -->
+    <div class="battle">
+      <div id="player-choice">❔</div>
+      <div>VS</div>
+      <div id="computer-choice">❔</div>
+    </div>
+
+    <!-- Bouton Rejouer -->
+    <button id="restartBtn" class="hidden">🔁 Rejouer</button>
+
+    <a href="index.html" class="back">⬅ Retour</a>
+  </div>
+
+  <script src="js/chifoumi.js"></script>
+</body>
+</html>

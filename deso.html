@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Désolé — Pas encore dispo</title>
+  <link rel="stylesheet" href="css/deso.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="dialog" aria-labelledby="title" aria-describedby="desc">
+      <div class="left">
+        <div class="badge">Jeux en ligne</div>
+        <h1 id="title">Désolé — la salle de jeux en ligne n'est pas encore prête</h1>
+        <p class="lead" id="desc">Ahah 😅 Les jeux en ligne (Morpion, Memory, Pendu...) arrivent bientôt. On prépare le mode multijoueur — patience, ça va être fun !</p>
+        <ul style="margin:10px 0 0 18px;color:rgba(230,238,248,0.8)">
+          <li>Morpion (1 vs 1 en ligne)</li>
+          <li>Ludo (salles privées)</li>
+          <li>Pendu (jouez avec des amis)</li>
+        </ul>
+        <p class="note">On travaille sur la connexion en temps réel et les salles. Inscris-toi pour être prévenu dès le lancement — ou reviens plus tard pour tester.</p>
+
+        <div class="actions">
+          <button class="btn" onclick="goHome()">Accueil</button>
+          <button class="btn primary" onclick="surprise()">Préviens-moi</button>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="orb" aria-hidden="true">
+          <span class="emoji">🎮</span>
+        </div>
+      </div>
+
+      <!-- sparkles -->
+      <div class="sparkle s1" aria-hidden="true"></div>
+      <div class="sparkle s2" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <script src="js/deso.js"></script>
+</body>
+</html>

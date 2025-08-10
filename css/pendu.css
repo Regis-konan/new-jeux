@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(45deg, #ff4e50, #f9d423);
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Animation du dégradé */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  background: #fff9e6;
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: fadeIn 0.8s ease;
+}
+
+/* Apparition douce */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+/* Affichage du mot */
+.word {
+  font-size: 2rem;
+  letter-spacing: 8px;
+  margin: 20px 0;
+  min-height: 48px;
+  font-weight: bold;
+  user-select: none;
+}
+
+/* Info erreurs restantes */
+.info {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Clavier */
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  user-select: none;
+}
+
+.keyboard button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #ff7b7b, #ff4e50);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.3s ease;
+}
+
+.keyboard button:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.keyboard button:disabled {
+  background: #ccc;
+  cursor: default;
+}
+
+/* Résultat (perdu/gagné) */
+.result {
+  margin-top: 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  min-height: 40px;
+  color: #d33;
+  user-select: none;
+}
+
+.result.win {
+  color: #2d8f2d;
+}
+
+/* Bouton recommencer */
+#restartBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #6c63ff, #5753c9);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.15s ease, opacity 0.3s ease;
+
+}
+.hidden {
+  display: none;
+}
+#restartBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* Lien retour */
+.back {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: #444;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.back:hover {
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .word {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+  }
+  .keyboard button {
+    width: 36px;
+    height: 36px;
+  }
+}

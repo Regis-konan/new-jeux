@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jeu du Pendu</title>
+  <link rel="stylesheet" href="css/pendu.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Sélection catégorie -->
+<div id="category-selection">
+  <label for="category-select" class="select-label">Choisis une catégorie :</label>
+  <select id="category-select">
+    <option value="animaux">Animaux</option>
+    <option value="pays">Pays</option>
+    <option value="objets">Objets</option>
+  </select>
+  <button id="startBtn">Démarrer</button>
+</div>
+
+
+    <!-- Jeu du pendu -->
+    <div id="game-container" class="hidden">
+      <h1>🪢 Jeu du Pendu</h1>
+      <p>Essaye de deviner le mot !</p>
+      <div class="word" id="word"></div>
+      <div class="info">
+        <p>Erreurs restantes : <span id="tries">6</span></p>
+      </div>
+      <div class="keyboard" id="keyboard"></div>
+      <div class="result" id="result"></div>
+      <button id="restartBtn" class="hidden">🔁 Recommencer</button>
+      <a href="index.html" class="back">⬅ Retour</a>
+    </div>
+
+  </div>
+
+  <script src="js/pendu.js"></script>
+</body>
+</html>

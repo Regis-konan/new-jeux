@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(45deg, #11998e, #38ef7d);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 15px;
+  /* ajout d’une animation subtile de fond */
+  background-size: 200% 200%;
+  animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  max-width: 400px;
+  width: 100%;
+  background: rgba(0, 102, 68, 0.85);
+  padding: 30px 25px;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  text-align: center;
+  backdrop-filter: saturate(180%) blur(10px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 2rem;
+  text-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+/* Sélection */
+#selection-container {
+  margin-bottom: 25px;
+}
+
+#selection-container h1 {
+  font-size: 1.9rem;
+  margin-bottom: 22px;
+  text-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+#selection-container label {
+  font-weight: 600;
+  margin-right: 12px;
+  font-size: 1rem;
+  user-select: none;
+}
+
+#selection-container select {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  background: #0c5c3a;
+  color: #d2f1e4;
+  box-shadow: inset 0 0 8px #38ef7d;
+}
+
+#selection-container select:hover,
+#selection-container select:focus {
+  box-shadow: 0 0 12px #38ef7d, inset 0 0 10px #38ef7d;
+}
+
+/* Boutons */
+#start-btn, #restart-btn {
+  margin-top: 20px;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #6c63ff, #5753c9);
+  border: none;
+  border-radius: 14px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+  box-shadow: 0 4px 12px rgba(108, 99, 255, 0.7);
+}
+
+#start-btn:hover, #restart-btn:hover {
+  background-color: #4e49b5;
+  transform: scale(1.03);
+}
+
+#start-btn:active, #restart-btn:active {
+  transform: scale(0.98);
+}
+
+/* Question */
+#question {
+  font-size: 1.4rem;
+  margin-bottom: 22px;
+  min-height: 70px;
+  font-weight: 600;
+  text-shadow: 0 0 4px rgba(0,0,0,0.15);
+}
+
+/* Réponses */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.answer-btn {
+  background-color: #33cc88;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.2s ease;
+  user-select: none;
+  color: white;
+  box-shadow: 0 4px 10px rgba(51, 204, 136, 0.6);
+}
+
+.answer-btn:hover:not(:disabled) {
+  background-color: #2da673;
+  box-shadow: 0 6px 14px rgba(45, 166, 115, 0.8);
+}
+
+.answer-btn:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+.answer-btn.correct {
+  background-color: #4caf50;
+  box-shadow: 0 4px 15px #2e7d32;
+  cursor: default;
+  color: #e0f2f1;
+}
+
+.answer-btn.incorrect {
+  background-color: #e53935;
+  box-shadow: 0 4px 15px #b71c1c;
+  cursor: default;
+  color: #ffebee;
+}
+
+/* Cache les éléments */
+.hidden {
+  display: none;
+}
+
+/* Score */
+#score-container p {
+  font-size: 1.5rem;
+  margin-bottom: 22px;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(0,0,0,0.15);
+  color: #d2f1e4;
+}
+
+/* Lien retour */
+.back {
+  display: inline-block;
+  margin-top: 25px;
+  text-decoration: none;
+  color: #a4f3d1;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.back:hover {
+  color: #d2f1e4;
+}
+
+/* Responsive */
+@media (max-width: 440px) {
+  .container {
+    padding: 20px 18px;
+  }
+  #question {
+    font-size: 1.25rem;
+  }
+  .answer-btn {
+    font-size: 1rem;
+    padding: 12px 16px;
+  }
+}

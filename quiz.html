@@ -1,0 +1,53 @@
+<!-- quiz.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz avec catégories</title>
+  <link rel="stylesheet" href="css/quiz.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Sélection catégorie + niveau -->
+    <div id="selection-container">
+      <h1>Choisis ta catégorie et ton niveau</h1>
+      <div>
+        <label for="category">Catégorie :</label>
+        <select id="category">
+          <option value="logique">Logique</option>
+          <option value="calcul">Calcul rapide</option>
+          <option value="culture">Culture générale</option>
+        </select>
+      </div>
+      <div style="margin-top: 15px;">
+        <label for="level">Niveau :</label>
+        <select id="level">
+          <option value="facile">Facile</option>
+          <option value="moyen">Moyen</option>
+          <option value="difficile">Difficile</option>
+        </select>
+      </div>
+      <button id="start-btn" style="margin-top: 20px;">Démarrer le quiz</button>
+    </div>
+
+    <!-- Quiz -->
+    <div id="quiz-container" class="hidden">
+      <div id="question"></div>
+      <div id="answers" class="answers"></div>
+    </div>
+
+    <!-- Score -->
+    <div id="score-container" class="hidden">
+      <p>Ton score : <span id="score"></span> / <span id="total"></span></p>
+      <button id="restart-btn">🔁 Recommencer</button>
+    </div>
+
+    <a href="index.html" class="back">⬅ Retour</a>
+  </div>
+
+  <script src="js/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e6f0fa, #f9fafb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  color: #2e3a59;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 2rem 2.5rem;
+  box-shadow:
+    0 12px 24px rgba(46, 58, 89, 0.12);
+  color: #2e3a59;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.site-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  color: #1c2536;
+  margin-bottom: 0.3rem;
+}
+
+.site-subtitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #5a6b8a;
+}
+
+.game-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+  gap: 1.6rem;
+}
+
+/* Styles communs cartes */
+.game-card {
+  border-radius: 16px;
+  padding: 1.3rem 1rem;
+  text-align: center;
+  color: #1c2536;
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(46, 58, 89, 0.07);
+  filter: brightness(0.98);
+}
+
+/* Cartes avec couleurs pastels différentes */
+.game-card:nth-child(1) {
+  background: rgba(255, 179, 186, 0.4); /* rose pastel */
+  box-shadow: 0 4px 14px rgba(255, 128, 146, 0.2);
+}
+.game-card:nth-child(2) {
+  background: rgba(255, 223, 186, 0.4); /* pêche pastel */
+  box-shadow: 0 4px 14px rgba(255, 182, 128, 0.2);
+}
+.game-card:nth-child(3) {
+  background: rgba(186, 255, 201, 0.4); /* vert pastel */
+  box-shadow: 0 4px 14px rgba(128, 255, 169, 0.2);
+}
+.game-card:nth-child(4) {
+  background: rgba(186, 225, 255, 0.4); /* bleu pastel */
+  box-shadow: 0 4px 14px rgba(128, 182, 255, 0.2);
+}
+.game-card:nth-child(5) {
+  background: rgba(255, 255, 186, 0.4); /* jaune pastel */
+  box-shadow: 0 4px 14px rgba(255, 255, 128, 0.2);
+}
+
+/* Nouveau style pour le bouton Jouer en ligne */
+.game-card.online-btn {
+  background: linear-gradient(135deg, #6c63ff, #5753c9);
+  color: white;
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+  filter: brightness(1);
+  font-weight: 700;
+}
+
+.game-card.online-btn:hover,
+.game-card.online-btn:focus {
+  background: linear-gradient(135deg, #5753c9, #4a44b7);
+  filter: brightness(1.1);
+  transform: translateY(-6px) scale(1.06);
+  box-shadow: 0 12px 30px rgba(87, 83, 201, 0.6);
+  outline: none;
+}
+
+/* Emoji et titre spécifiques au bouton en ligne */
+.game-card.online-btn .emoji {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.2));
+}
+
+.game-card.online-btn .title {
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+}
+
+/* Hover et focus généraux */
+.game-card:hover,
+.game-card:focus {
+  transform: translateY(-6px) scale(1.04);
+  filter: brightness(1);
+  box-shadow:
+    0 12px 28px rgba(46, 58, 89, 0.18);
+  outline: none;
+}
+
+.emoji {
+  font-size: 3.6rem;
+  margin-bottom: 0.7rem;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.05));
+  z-index: 1;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #1c2536;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .site-title {
+    font-size: 2.2rem;
+  }
+  .emoji {
+    font-size: 3rem;
+  }
+  .game-list {
+    grid-template-columns: 1fr;
+  }
+}

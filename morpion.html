@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Morpion</title>
+  <link rel="stylesheet" href="css/morpion.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Étape 1 : Choix des emojis -->
+    <div class="emoji-select">
+      <h2>Choisis ton symbole</h2>
+      <label>Joueur 1 :
+        <input type="text" id="emoji1" maxlength="2" value="❌" />
+      </label>
+      <br /><br />
+      <label>Joueur 2 :
+        <input type="text" id="emoji2" maxlength="2" value="⭕" />
+      </label>
+      <br /><br />
+      <button onclick="validateEmojis()">Valider ✅</button>
+    </div>
+
+    <!-- Étape 2 : Choix du mode -->
+    <div class="mode-select hidden">
+      <h2>Choisis un mode de jeu :</h2>
+      <button onclick="startGame('solo')">👤 Jouer seul</button>
+      <button onclick="startGame('duo')">👥 Jouer à deux</button>
+    </div>
+
+    <!-- Étape 3 : Zone de jeu -->
+    <div class="game hidden">
+      <h1 id="game-title">Morpion</h1>
+      <p class="turn">Au tour de : <span id="player">❌</span></p>
+      <div class="grid" id="grid">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <div class="result">
+        <p id="result-text"></p>
+        <button onclick="restartGame()">Rejouer 🔁</button>
+      </div>
+      <a href="index.html" class="back">⬅ Retour</a>
+    </div>
+
+  </div>
+
+  <script src="js/morpion.js"></script>
+</body>
+</html>
