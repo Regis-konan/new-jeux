@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mes Scores</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298, #0f2027, #203a43, #2c5364);
+      background-size: 300% 300%;
+      animation: bgShift 12s ease infinite;
+      color: #fff;
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(10px) saturate(180%);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    th, td {
+      padding: 15px 20px;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.08);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #00ffcc;
+      letter-spacing: 0.5px;
+    }
+
+    tr {
+      transition: background 0.3s ease;
+    }
+
+    tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    tr:hover {
+      background: rgba(0, 255, 204, 0.08);
+    }
+
+    td {
+      font-size: 0.95rem;
+    }
+
+    .no-score {
+      color: #bbb;
+      font-style: italic;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 25px;
+      text-align: center;
+      color: #00ffcc;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,255,204,0.5);
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background: rgba(0,255,204,0.15);
+      box-shadow: 0 0 8px rgba(0,255,204,0.4);
+    }
+  </style>
+</head>
+<body>
+  <h1>Mes meilleurs scores</h1>
+  <table>
+    <thead>
+      <tr><th>Jeu</th><th>Meilleur score</th></tr>
+    </thead>
+    <tbody id="score-list">
+      <!-- Scores insérés ici -->
+    </tbody>
+  </table>
+  <div style="text-align:center;">
+    <a href="index.html">⬅ Retour au menu</a>
+  </div>
+
+  <script>
+    const games = [
+      { key: 'score_simon', name: 'Simon' },
+      { key: 'score_chifoumi', name: 'Chifoumi' },
+      { key: 'score_pendu', name: 'Pendu' },
+      { key: 'score_morpion', name: 'Morpion' },
+      { key: 'score_memory', name: 'Memory' },
+      { key: 'score_quiz', name: 'Quiz' }
+    ];
+
+    const tbody = document.getElementById('score-list');
+
+    games.forEach(game => {
+      const score = localStorage.getItem(game.key);
+      const tr = document.createElement('tr');
+      const tdGame = document.createElement('td');
+      const tdScore = document.createElement('td');
+
+      tdGame.textContent = game.name;
+      tdScore.textContent = score !== null ? score : 'Aucun score enregistré';
+      if(score === null) tdScore.classList.add('no-score');
+
+      tr.appendChild(tdGame);
+      tr.appendChild(tdScore);
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
+</html>

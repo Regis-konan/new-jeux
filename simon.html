@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simon - Jeu de mémoire</title>
+  <link rel="stylesheet" href="css/simon.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Simon - Jeu de mémoire</h1>
+    <div id="score-container">
+      Niveau : <span id="score">0</span>
+    </div>
+    <div id="message">Clique sur Démarrer pour commencer</div>
+    <div class="buttons-grid">
+      <button id="green" class="color-btn green"></button>
+      <button id="red" class="color-btn red"></button>
+      <button id="yellow" class="color-btn yellow"></button>
+      <button id="blue" class="color-btn blue"></button>
+    </div>
+    <button id="start-btn">Démarrer</button>
+    <button id="restart-btn" class="hidden">Rejouer</button>
+    <a href="index.html" class="back">⬅ Retour</a>
+  </div>
+
+  <script src="js/simon.js"></script>
+</body>
+</html>

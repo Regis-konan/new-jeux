@@ -1,164 +1,210 @@
-body {
+/* Reset basique */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #8e2de2, #4a00e0);
-  color: white;
+  background-color: #f5f7fa;
+  color: #333;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
+  align-items: flex-start;
+  padding: 20px;
 }
 
 .container {
-  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   max-width: 400px;
-  width: 90%;
+  width: 100%;
+  padding: 20px 25px;
+  margin-bottom: 40px;
 }
 
-/* Sélection mode */
-.mode-select {
-  margin: 40px 0;
+/* Sections cachées */
+.hidden {
+  display: none !important;
 }
 
-.mode-select h2 {
-  font-size: 24px;
+/* Titres */
+h1, h2 {
+  color: #0b79d0;
   margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
 }
 
-.mode-select button {
-  background-color: #6c63ff;
-  border: none;
-  color: white;
-  padding: 12px 28px;
-  margin: 0 12px;
+/* Emoji select */
+.emoji-select label {
+  font-weight: 600;
+  display: block;
+  margin: 12px 0 6px;
+  font-size: 1rem;
+}
+
+.emoji-select input[type="text"] {
+  font-size: 2rem;
+  text-align: center;
+  width: 100%;
+  padding: 8px 0;
   border-radius: 10px;
-  font-size: 16px;
+  border: 2px solid #0b79d0;
+  transition: border-color 0.3s ease;
+}
+
+.emoji-select input[type="text"]:focus {
+  outline: none;
+  border-color: #095a9d;
+}
+
+/* Boutons */
+button {
+  display: inline-block;
+  background: #0b79d0;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  user-select: none;
+  margin-top: 20px;
+  width: 100%;
 }
 
-.mode-select button:hover {
-  background-color: #5753c9;
+button:hover {
+  background: #095a9d;
 }
 
-.hidden {
-  display: none;
+/* Mode select boutons */
+.mode-select button {
+  margin-bottom: 12px;
 }
 
-h1 {
-  margin-bottom: 10px;
-  font-size: 2.2rem;
-  animation: fadeInDown 1s ease;
-  user-select: none;
+/* Zone de jeu */
+.game {
+  text-align: center;
+}
+
+#game-title {
+  margin-bottom: 12px;
+  font-size: 2rem;
+  color: #0b79d0;
 }
 
 .turn {
-  margin-bottom: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
   font-size: 1.2rem;
-  user-select: none;
 }
 
+/* Grille du morpion */
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  animation: fadeInUp 1s ease;
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .cell {
-  width: 100%;
-  aspect-ratio: 1;
-  background-color: rgba(255, 255, 255, 0.1);
-  font-size: 2rem;
-  font-weight: bold;
+  background: #e7eaf3;
+  border-radius: 14px;
+  aspect-ratio: 1 / 1;
+  font-size: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
   user-select: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.12);
 }
 
 .cell:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Résultat et bouton rejouer */
-.result {
-  margin-top: 20px;
-  display: none; /* caché par défaut */
-  animation: fadeIn 0.8s ease;
-  text-align: center;
-}
-
-.result p {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  user-select: none;
-}
-
-.result button {
-  padding: 10px 25px;
-  background: linear-gradient(135deg, #6c63ff, #4a00e0);
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  user-select: none;
-  font-size: 1rem;
-  transition: transform 0.2s ease, background 0.3s ease;
-}
-
-.result button:hover {
+  background-color: #d2dbf0;
   transform: scale(1.05);
-  background: linear-gradient(135deg, #5a54d1, #3c00b5);
 }
 
-.back {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-  color: #eee;
-  font-size: 0.9rem;
-  user-select: none;
+.cell.flash {
+  animation: flashAnim 1s ease-in-out infinite alternate;
+  background-color: #0b79d0;
+  color: white;
+  font-weight: 900;
+}
+
+.cell.shake {
+  animation: shakeAnim 0.3s ease;
+  background-color: #fcdede;
 }
 
 /* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes flashAnim {
+  0% { background-color: #0b79d0; color: white; }
+  100% { background-color: #085a9d; color: white; }
 }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* Shake animation pour erreur case déjà prise */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  25%, 75% { transform: translateX(-5px); }
+@keyframes shakeAnim {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
   50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
 
-.shake {
-  animation: shake 0.4s ease;
+/* Résultat */
+.result {
+  margin-bottom: 20px;
+  display: none; /* caché par défaut, affiché via JS */
 }
 
-/* Flash animation pour victoire */
-@keyframes flash {
-  0%, 100% { background-color: rgba(255, 255, 102, 0.6); }
-  50% { background-color: rgba(255, 255, 102, 0.2); }
+.result p {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0b79d0;
+  margin-bottom: 12px;
 }
 
-.flash {
-  animation: flash 0.7s ease infinite;
+/* Bouton retour */
+.back {
+  display: inline-block;
+  margin-top: 10px;
+  color: #0b79d0;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.back:hover {
+  color: #095a9d;
+}
+
+/* Responsive */
+@media (max-width: 420px) {
+  .container {
+    padding: 15px 15px;
+    max-width: 95vw;
+  }
+
+  #game-title {
+    font-size: 1.7rem;
+  }
+
+  .cell {
+    font-size: 2.4rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 18px;
+  }
+
+  .turn {
+    font-size: 1rem;
+  }
 }

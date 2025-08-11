@@ -1,149 +1,185 @@
-body {
+/* Reset */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(45deg, #ff4e50, #f9d423);
-  background-size: 200% 200%;
-  animation: gradientMove 6s ease infinite;
-  color: #222;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  padding: 0;
 }
 
-/* Animation du dégradé */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff5f5; /* Fond clair rosé */
+  color: #4b1a1a; /* Texte bordeaux foncé */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
 }
 
 .container {
+  background: #fff0f0; /* Fond rose pâle */
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(75, 26, 26, 0.2);
   max-width: 420px;
-  width: 90%;
+  width: 100%;
+  padding: 25px 30px 30px 30px;
+  margin-bottom: 40px;
   text-align: center;
-  background: #fff9e6;
-  border-radius: 15px;
-  padding: 25px 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  animation: fadeIn 0.8s ease;
 }
 
-/* Apparition douce */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Cacher les sections */
+.hidden {
+  display: none !important;
 }
 
 h1 {
-  margin-bottom: 10px;
-  font-size: 1.8rem;
+  color: #a33030; /* Rouge vif */
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
-/* Affichage du mot */
+.select-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #a33030;
+  text-align: left;
+}
+
+#category-select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 2px solid #a33030;
+  margin-bottom: 20px;
+  transition: border-color 0.3s ease;
+}
+
+#category-select:focus {
+  outline: none;
+  border-color: #6b1e1e;
+}
+
+button {
+  background-color: #a33030;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+button:hover:not(:disabled) {
+  background-color: #6b1e1e;
+}
+
+button:disabled {
+  background-color: #dcaeae;
+  cursor: not-allowed;
+}
+
+/* Texte descriptif */
+#game-container p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #7a3b3b;
+}
+
+/* Mot à deviner */
 .word {
   font-size: 2rem;
-  letter-spacing: 8px;
-  margin: 20px 0;
-  min-height: 48px;
-  font-weight: bold;
+  letter-spacing: 0.2em;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: #a33030;
   user-select: none;
 }
 
-/* Info erreurs restantes */
-.info {
-  margin-bottom: 20px;
+/* Infos essais */
+.info p {
   font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #4b1a1a;
 }
 
 /* Clavier */
 .keyboard {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 10px;
+  justify-items: center;
+  margin-bottom: 15px;
+}
+
+.key-btn {
+  padding: 10px 0;
+  border-radius: 10px;
+  border: none;
+  background-color: #a33030;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 45px;
   user-select: none;
 }
 
-.keyboard button {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  border: none;
-  background: linear-gradient(135deg, #ff7b7b, #ff4e50);
-  color: white;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.3s ease;
+.key-btn:hover:not(:disabled) {
+  background-color: #6b1e1e;
 }
 
-.keyboard button:hover:not(:disabled) {
-  transform: scale(1.1);
+.key-btn:disabled {
+  background-color: #dcaeae;
+  cursor: not-allowed;
 }
 
-.keyboard button:disabled {
-  background: #ccc;
-  cursor: default;
-}
-
-/* Résultat (perdu/gagné) */
+/* Résultat */
 .result {
-  margin-top: 20px;
   font-size: 1.3rem;
   font-weight: 700;
-  min-height: 40px;
-  color: #d33;
+  color: #a33030;
+  min-height: 48px;
+  margin-bottom: 15px;
   user-select: none;
 }
 
-.result.win {
-  color: #2d8f2d;
-}
-
-/* Bouton recommencer */
-#restartBtn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  background: linear-gradient(135deg, #6c63ff, #5753c9);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.15s ease, opacity 0.3s ease;
-
-}
-.hidden {
-  display: none;
-}
-#restartBtn:hover {
-  transform: scale(1.05);
-  opacity: 0.9;
-}
-
-/* Lien retour */
+/* Bouton retour */
 .back {
   display: inline-block;
-  margin-top: 20px;
+  margin-top: 5px;
+  color: #a33030;
   text-decoration: none;
-  color: #444;
-  font-size: 0.9rem;
+  font-weight: 700;
   transition: color 0.3s ease;
 }
 
 .back:hover {
-  color: #000;
+  color: #6b1e1e;
 }
 
 /* Responsive */
-@media (max-width: 500px) {
-  .word {
-    font-size: 1.5rem;
-    letter-spacing: 5px;
+@media (max-width: 420px) {
+  .container {
+    padding: 20px 15px 25px 15px;
+    max-width: 95vw;
   }
-  .keyboard button {
-    width: 36px;
-    height: 36px;
+
+  .word {
+    font-size: 1.7rem;
+  }
+
+  button, .key-btn {
+    font-size: 1rem;
+    padding: 10px 0;
   }
 }

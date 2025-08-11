@@ -1,3 +1,12 @@
+function saveHighScore(score) {
+  const key = 'score_chifoumi';
+  const highScore = localStorage.getItem(key) || 0;
+  if (score > highScore) {
+    localStorage.setItem(key, score);
+    alert("Nouveau record !");
+  }
+}
+
 const choices = ["pierre", "feuille", "ciseaux"];
 const choiceButtons = document.querySelectorAll(".choice-btn");
 const resultText = document.getElementById("round-result");
@@ -29,8 +38,9 @@ choiceButtons.forEach(button => {
     const playerChoice = button.dataset.choice;
     const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-    playerChoiceDisplay.textContent = getEmoji(playerChoice);
-    computerChoiceDisplay.textContent = getEmoji(computerChoice);
+    // Affichage avec images
+    playerChoiceDisplay.innerHTML = getImageHTML(playerChoice);
+    computerChoiceDisplay.innerHTML = getImageHTML(computerChoice);
 
     const winner = getWinner(playerChoice, computerChoice);
     updateScores(winner);
@@ -81,6 +91,7 @@ function endGame() {
   if (scorePlayer > scoreComputer) {
     resultText.textContent = "🎉 Victoire finale !";
     winSound.play();
+    saveHighScore(scorePlayer); // <- Sauvegarde du meilleur score ici
   } else {
     resultText.textContent = "💻 L'ordi gagne la partie.";
   }
@@ -94,13 +105,13 @@ function restartGame() {
   resultText.textContent = "Fais ton choix...";
   scorePlayerEl.textContent = scorePlayer;
   scoreComputerEl.textContent = scoreComputer;
-  playerChoiceDisplay.textContent = "❔";
-  computerChoiceDisplay.textContent = "❔";
+  playerChoiceDisplay.innerHTML = '<img src="img/question.png" alt="?" style="width:48px;height:48px;">';
+  computerChoiceDisplay.innerHTML = '<img src="img/question.png" alt="?" style="width:48px;height:48px;">';
   restartBtn.classList.add("hidden");
 }
 
-function getEmoji(choice) {
-  if (choice === "pierre") return "✊";
-  if (choice === "feuille") return "✋";
-  if (choice === "ciseaux") return "✌";
+function getImageHTML(choice) {
+  if (choice === "pierre") return '<img src="img/pierre.png" alt="Pierre" style="width:48px; height:48px;">';
+  if (choice === "feuille") return '<img src="img/papier.png" alt="Feuille" style="width:48px; height:48px;">';
+  if (choice === "ciseaux") return '<img src="img/ciseau.png" alt="Ciseaux" style="width:48px; height:48px;">';
 }

@@ -1,49 +1,68 @@
 <!DOCTYPE html>
-<html lang="fr" >
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🎉 Jeux Fun - Explosion de couleurs !</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <title>🎮 FunHub - Accueil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/mob.css" />
 </head>
-<body id="mainBody">
+<body>
   <main class="container">
+    <!-- HEADER -->
     <header class="header">
-      <h1 class="site-title">🔥 Jeux Fun</h1>
-      <p class="site-subtitle">Choisis ton jeu préféré et éclate-toi !</p>
+      <h1 class="site-title">🎮 FunHub</h1>
+      <p class="site-subtitle">Choisis ton jeu préféré et amuse-toi !</p>
     </header>
 
-    <section class="game-list" aria-label="Liste des jeux disponibles">
-      <a href="morpion.html" class="game-card" aria-label="Jouer au Morpion">
-        <div class="emoji" aria-hidden="true">❌⭕</div>
+    <!-- MENU PRINCIPAL -->
+    <nav class="main-nav">
+      <a href="jouer.html"><button>🎯 Jouer</button></a>
+      <a href="personnalisation.html"><button >🏆 Mes Scores</button></a>
+    </nav>
+
+    <!-- LISTE DES JEUX -->
+    <section class="game-list">
+      <a class="game-card">
+        <img src="img/morpion.png" alt="Morpion">
         <div class="title">Morpion</div>
+        <p>Affronte l'IA ou un ami</p>
       </a>
 
-      <a href="pendu.html" class="game-card" aria-label="Jouer au Pendu">
-        <div class="emoji" aria-hidden="true">🔤</div>
+      <a  class="game-card">
+        <img src="img/pendu.png" alt="Pendu">
         <div class="title">Pendu</div>
+        <p>Trouve le mot avant la fin</p>
       </a>
 
-      <a href="quiz.html" class="game-card" aria-label="Jouer au Quiz">
-        <div class="emoji" aria-hidden="true">🧠</div>
+      <a  class="game-card">
+        <img src="img/quiz.png" alt="Quiz">
         <div class="title">Quiz</div>
+        <p>Teste ta culture générale</p>
       </a>
 
-      <a href="chifoumi.html" class="game-card" aria-label="Jouer à Pierre-Feuille-Ciseaux">
-        <div class="emoji" aria-hidden="true">✊✋✌</div>
+      <a class="game-card">
+        <img src="img/chifoumi.png" alt="Chifoumi">
         <div class="title">Chifoumi</div>
+        <p>Pierre, Feuille ou Ciseaux ?</p>
       </a>
 
-      <a href="memory.html" class="game-card" aria-label="Jouer au Memory">
-        <div class="emoji" aria-hidden="true">🃏</div>
+      <a  class="game-card">
+        <img src="img/memory.png" alt="Memory">
         <div class="title">Memory</div>
+        <p>Retrouve toutes les paires</p>
       </a>
 
-      <!-- Nouveau bouton Jouer en ligne -->
-      <a href="deso.html" class="game-card online-btn" aria-label="Jouer en ligne">
-        <div class="emoji" aria-hidden="true">🌐🎮</div>
+    <a  class="game-card">
+            <img src="img/simon.png" alt="Simon">
+            <div class="title">Simon</div>
+            <p>Retrouve la séquence</p>
+    </a>
+
+      <a  class="game-card online-btn">
+        <img src="img/game.png" alt="Jouer en ligne">
         <div class="title">Jouer en ligne</div>
+        <p>Défie tes amis partout</p>
       </a>
     </section>
   </main>

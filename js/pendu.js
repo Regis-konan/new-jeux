@@ -32,6 +32,7 @@ let chosenWord = "";
 let guessedLetters = [];
 let triesLeft = 6;
 let currentCategory = "";
+let winCount = 0; // compteur de victoires
 
 startBtn.addEventListener("click", () => {
   currentCategory = categorySelect.value;
@@ -41,6 +42,15 @@ startBtn.addEventListener("click", () => {
 restartBtn.addEventListener("click", () => {
   startGame(currentCategory);
 });
+
+function saveHighScore(score) {
+  const key = 'score_pendu';
+  const highScore = localStorage.getItem(key) || 0;
+  if(score > highScore) {
+    localStorage.setItem(key, score);
+    alert("Nouveau record de victoires au Pendu !");
+  }
+}
 
 function startGame(category) {
   const words = categories[category];
@@ -100,14 +110,21 @@ function checkWin() {
   const won = chosenWord.split("").every(letter => guessedLetters.includes(letter));
   if (won) {
     winSound.play();
+    winCount++;
+    saveHighScore(winCount);  // Sauvegarde le record si supérieur
     endGame(true);
   }
 }
 
 function endGame(won) {
   resultEl.textContent = won
-    ? "🎉 Bravo, tu as gagné !"
-    : "❌ Perdu... Le mot était : " + chosenWord.toUpperCase();
+    ? `🎉 Bravo, tu as gagné ! Victoires consécutives : ${winCount}`
+    : `❌ Perdu... Le mot était : ${chosenWord.toUpperCase()}`;
   restartBtn.classList.remove("hidden");
   [...keyboardEl.children].forEach(btn => (btn.disabled = true));
+
+  if(!won) {
+    // Reset compteur de victoires si perdu
+    winCount = 0;
+  }
 }

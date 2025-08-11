@@ -1,7 +1,4 @@
-  function goHome(){
-      // if embedded somewhere, try go back; otherwise go to root
-      if(window.history.length>1) window.history.back(); else window.location.href = '/';
-    }
+
 
     function surprise(){
       const btn = document.querySelector('.btn.primary');

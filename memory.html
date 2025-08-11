@@ -10,8 +10,9 @@
   <div class="container">
     <h1>🧠 Jeu de Mémoire</h1>
 
+    <!-- Sélection de la difficulté -->
     <div class="level-select">
-      <label for="level">Choisis la difficulté :</label>
+      <label for="level">Difficulté :</label>
       <select id="level">
         <option value="4">Facile (4 paires)</option>
         <option value="8" selected>Moyen (8 paires)</option>
@@ -20,20 +21,19 @@
       <button id="startBtn">Démarrer</button>
     </div>
 
+    <!-- Zone de jeu -->
     <div id="game" class="hidden">
-      <!-- Zone stats avec timer et coups -->
-      <!-- <div class="stats">
-        <p>Temps : <span id="timer">00:00</span></p>
-        <p>Coups : <span id="moves">0</span></p>
-      </div> -->
+      
+      <!-- Zone stats -->
 
       <div id="grid" class="grid"></div>
+      
       <p id="message"></p>
       <button id="restartBtn" class="hidden">🔁 Rejouer</button>
-      <a href="index.html" class="back">⬅ Retour</a>
+      <a href="jouer.html" class="back">⬅ Retour</a>
     </div>
   </div>
-
+  
   <script src="js/memory.js"></script>
 </body>
 </html>

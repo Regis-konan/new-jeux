@@ -8,6 +8,7 @@ let grid = ["", "", "", "", "", "", "", "", ""];
 let gameMode = "duo";
 let emojis = { player1: "❌", player2: "⭕" };
 let isGameActive = true;
+let winCount = 0; // compteur victoires joueur 1 (modifiable)
 
 // Raccourcis DOM
 const playerSpan = document.getElementById("player");
@@ -19,6 +20,16 @@ const resultContainer = document.querySelector(".result"); // ✅ Conteneur rés
 const emojiSelect = document.querySelector(".emoji-select");
 const modeSelect = document.querySelector(".mode-select");
 const gameContainer = document.querySelector(".game");
+
+// Fonction pour sauvegarder le meilleur score local
+function saveHighScore(score) {
+  const key = 'score_morpion';
+  const highScore = localStorage.getItem(key) || 0;
+  if(score > highScore) {
+    localStorage.setItem(key, score);
+    alert("Nouveau record de victoires au Morpion !");
+  }
+}
 
 // Valider les symboles
 function validateEmojis() {
@@ -56,7 +67,6 @@ function startGame(mode) {
   gameContainer.classList.remove("hidden");
   playerSpan.textContent = currentPlayer;
 
-  // Si solo et c'est l'ordi qui commence
   if (gameMode === "solo" && currentPlayer === emojis.player2) {
     setTimeout(aiMove, 500);
   }
@@ -82,6 +92,11 @@ document.querySelectorAll(".cell").forEach(cell => {
     clickSound.play();
 
     if (checkWin()) {
+      // Incrémente compteur victoires joueur 1 si c'est lui qui gagne (modifiable)
+      if (currentPlayer === emojis.player1) {
+        winCount++;
+        saveHighScore(winCount);
+      }
       endGame(`🎉 Le joueur ${currentPlayer} a gagné !`, winSound);
     } else if (!grid.includes("")) {
       endGame("😮 Match nul !", errorSound);
@@ -109,6 +124,10 @@ function aiMove() {
     clickSound.play();
 
     if (checkWin()) {
+      if (currentPlayer === emojis.player1) {
+        winCount++;
+        saveHighScore(winCount);
+      }
       endGame(`🎉 Le joueur ${currentPlayer} a gagné !`, winSound);
     } else if (!grid.includes("")) {
       endGame("😮 Match nul !", errorSound);
@@ -120,7 +139,7 @@ function aiMove() {
 
 function endGame(message, sound) {
   isGameActive = false;
-  resultText.textContent = message;
+  resultText.textContent = message + ` (Victoires Joueur 1 : ${winCount})`;
   resultContainer.style.display = "block"; // ✅ Afficher résultat + bouton rejouer
   sound.play();
   highlightWin();

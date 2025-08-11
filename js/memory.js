@@ -1,4 +1,18 @@
-const emojis = ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮"];
+// Remplace les emojis par les noms des fichiers image (sans extension)
+const images = [
+  "dog",
+  "cat",
+  "mouse",
+  "hamster",
+  "rabbit",
+  "fox",
+  "bear",
+  "panda",
+  "koala",
+  "tiger",
+  "lion",
+  "cow"
+];
 
 const levelSelect = document.getElementById("level");
 const startBtn = document.getElementById("startBtn");
@@ -14,7 +28,7 @@ const matchSound = new Audio("son/match.mp3");
 const errorSound = new Audio("son/error.mp3");
 const winSound = new Audio("son/win.mp3");
 
-// Nouveaux éléments pour timer & coups
+// Stats (timer & coups)
 const statsDiv = document.createElement("div");
 statsDiv.classList.add("stats");
 const timerP = document.createElement("p");
@@ -50,7 +64,6 @@ startBtn.addEventListener("click", () => {
   restartBtn.classList.add("hidden");
   setupGrid(pairs);
 
-  // Démarrer le timer
   clearInterval(timer);
   timer = setInterval(() => {
     secondsElapsed++;
@@ -70,19 +83,20 @@ restartBtn.addEventListener("click", () => {
 });
 
 function setupGrid(pairs) {
-  const selectedEmojis = emojis.slice(0, pairs);
-  const cardEmojis = [...selectedEmojis, ...selectedEmojis];
-  shuffle(cardEmojis);
+  const selectedImages = images.slice(0, pairs);
+  const cardImages = [...selectedImages, ...selectedImages];
+  shuffle(cardImages);
+
   grid.style.gridTemplateColumns = pairs > 8 ? "repeat(6, 1fr)" : "repeat(4, 1fr)";
   grid.innerHTML = "";
 
-  cardEmojis.forEach((emoji) => {
+  cardImages.forEach((imgName) => {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.dataset.emoji = emoji;
+    card.dataset.img = imgName;
 
     card.innerHTML = `
-      <div class="front">${emoji}</div>
+      <div class="front"><img src="memory/img/${imgName}.png" alt="${imgName}" /></div>
       <div class="back">?</div>
     `;
 
@@ -95,7 +109,7 @@ function flipCard(card) {
   if (lockBoard || card === firstCard || card.classList.contains("flipped")) return;
 
   card.classList.add("flipped");
-  clickSound.play(); // 🎵 click
+  clickSound.play();
   movesCount++;
   movesP.textContent = `Coups : ${movesCount}`;
 
@@ -107,21 +121,23 @@ function flipCard(card) {
   secondCard = card;
   lockBoard = true;
 
-  if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
-    matchSound.play(); // 🎵 match
+  if (firstCard.dataset.img === secondCard.dataset.img) {
+    matchSound.play();
     matchedPairs++;
+    // Enlever l'écouteur (plus besoin de cliquer)
     firstCard.removeEventListener("click", () => flipCard(firstCard));
     secondCard.removeEventListener("click", () => flipCard(secondCard));
     resetTurn();
 
     if (matchedPairs === totalPairs) {
       clearInterval(timer);
-      winSound.play(); // 🎵 win
-      message.textContent = `🎉 Bravo, tu as gagné en ${secondsElapsed}s avec ${movesCount} coups !`;
+      winSound.play();
+      const bestTime = saveHighScore(secondsElapsed);
+      message.textContent = `🎉 Bravo, tu as gagné en ${secondsElapsed}s avec ${movesCount} coups !\n${bestTime ? `Meilleur temps : ${bestTime}s` : ""}`;
       restartBtn.classList.remove("hidden");
     }
   } else {
-    errorSound.play(); // 🎵 erreur
+    errorSound.play();
     setTimeout(() => {
       firstCard.classList.remove("flipped");
       secondCard.classList.remove("flipped");
@@ -140,4 +156,17 @@ function shuffle(array) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
+}
+
+// Sauvegarde du meilleur temps dans localStorage (moins c'est mieux)
+function saveHighScore(time) {
+  const key = 'score_memory';
+  const highScore = localStorage.getItem(key);
+
+  if (highScore === null || time < parseInt(highScore, 10)) {
+    localStorage.setItem(key, time);
+    alert("Nouveau record de temps au Memory !");
+    return time;
+  }
+  return highScore;
 }
